@@ -144,3 +144,33 @@ Ejemplo: Un código de 4R7 significa 4.7 ohmios.
 
 **Baterías**
 
+![image](https://github.com/user-attachments/assets/8a2bf7eb-4b0d-4311-b81f-269bce33bc96)
+
+**Potencia eléctrica**
+La **potencia eléctrica** es la cantidad de energía que un dispositivo o sistema eléctrico consume o genera en un periodo determinado. Se mide en **vatios (W)**, y se calcula utilizando la siguiente fórmula:
+
+$$P=VI$$
+
+Donde:
+  - **P** es la potencia en vatios (W), 
+  - **V** es el voltaje en voltios (V),
+  -**I** es la corriente en amperios (A).
+La potencia eléctrica representa la **velocidad a la que se consume o genera energía.** En términos simples, un dispositivo con mayor potencia consume más energía por segundo. Por ejemplo, un bombillo de 100 W consume más energía que uno de 60 W cuando están encendidos por el mismo tiempo.
+**Leyes de kirchhoff** 
+La ley de los nodos, o primera ley de Kirchoff establece que “En cualquier nodo, la suma de las corrientes que entran en ese nodo es igual a la suma de las corrientes que salen. De forma equivalente, la suma de todas las corrientes que pasan por el nodo es igual a cero” 
+
+![image](https://github.com/user-attachments/assets/d3816bc4-c188-447f-91ac-a20ef8baa97d)
+
+La suma de los voltajes alrededor de una trayectoria o circuito cerrado debe ser cero. Matemáticamente, está dada por:
+
+![image](https://github.com/user-attachments/assets/86ed9efe-24fe-4772-9caf-57d18ffb3937)
+
+**Divisor de tención**
+Un divisor de tensión es una configuración de circuito eléctrico que reparte la tensión de una fuente entre una o más resistencias conectadas en serie.
+
+![image](https://github.com/user-attachments/assets/0e434d86-e722-45e5-94c6-a27d105d1b7d)
+
+[https://www.youtube.com/watch?v=1-ucOtWF4W0&ab_channel=Shakmuria]
+
+**Clase 04/09**
+
