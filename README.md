@@ -174,3 +174,6 @@ Un divisor de tensión es una configuración de circuito eléctrico que reparte 
 
 **Clase 04/09**
 
+
+
+
