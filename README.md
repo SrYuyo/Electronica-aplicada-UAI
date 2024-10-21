@@ -220,7 +220,157 @@ El condensador es otro componente electrónico, este permite almacenar energía 
 En su interior hay dos placas metálicas (armadura) y un material aislante (dieléctrico) en medio. Al haber tensión en el circuito se almacena carga en estas placas. 
 
 **Capacitancia:**
+
 La capacitancia (C) es la capacidad de un condensador para almacenar carga eléctrica. Se mide en faradios (F), y representa cuánta carga puede almacenar el condensador por cada voltio aplicado. La fórmula básica de la capacitancia es:
 
 $C=Q/V$
+
+**C** es la capacitancia en faradios (F),
+**Q** es la carga almacenada en el condensador en culombios (C),
+**V** es la diferencia de potencial (voltaje) entre las dos placas en voltios (V).
+
+La energía almacenada en un condensador puede calcularse por: 
+
+$E=(1/2)*CV^2$
+
+**E** es la energía almacenada en julios (J)
+**C** es la capacitancia en faradios (F)
+**V** es el voltaje aplicado en voltios (V)
+
+**Conexiones en serie y paralelo**
+
+![image](https://github.com/user-attachments/assets/13799fd3-51a2-41ee-a3c3-cd25ee523228)
+
+![image](https://github.com/user-attachments/assets/12ed1a64-7fcc-461d-aaf5-55ff815246df)
+
+**Indutores**
+
+Un inductor es un componente pasivo que almacena energía en forma de campo magnético cuando una corriente eléctrica fluye a través de él. Se construye generalmente con una bobina de alambre enrollada, y su principal característica es la inductancia, que mide su capacidad para resistir cambios en la corriente. Losinductores se utilizan en muchos circuitos eléctricos,especialmente en filtros y fuentes de alimentación.
+
+La **inductancia** (L) es la propiedad del inductor que determina la cantidad de energía que puede almacenar en su campo magnético para una corriente dada. Se mide en henrios (H). La inductancia depende del número de vueltas de la bobina, el área de la sección transversal y el tipo de material alrededor del inductor.
+
+La fórmula básica que describe la inductancia es:
+
+$V=L dL/dT$
+
+**V** es la tensión inducida (voltaje) en voltios (V)
+**L** es la inductancia en henrios (H)
+$**dI/dt**$ es la tasa de cambio de la corriente en amperios por segundo (A/s)
+
+Esta fórmula indica que el voltaje inducido en el inductor es proporcional a la rapidez con la que cambia la corriente.
+
+**Conexiones en serie y paralelo**
+
+![image](https://github.com/user-attachments/assets/df7ec98d-e40f-424f-9055-6b6b8cb27670)
+
+**Interruptores**
+
+![image](https://github.com/user-attachments/assets/0a8634d2-ed91-4de3-8bef-4d0018d29725)
+![image](https://github.com/user-attachments/assets/e842efb0-bc14-4f2a-bcb1-5ac66378f54b)
+
+**Fuentes de alimentación**
+
+![image](https://github.com/user-attachments/assets/e890ca17-733c-409c-b847-12c632d3962b)
+
+# **11/09**
+
+![image](https://github.com/user-attachments/assets/7f046d13-4286-4e1b-baee-48fce6c30e55)
+
+Los transistores son dispositivos semiconductores fundamentales en la electrónica moderna, utilizados para amplificar y conmutar señales eléctricas. Desempeñan un papel crucial en casi todos los dispositivos electrónicos, desde radios hasta computadoras.
+
+Los transistores tienen una amplia variedad de aplicaciones en la electrónica, que incluyen:
+
+**Amplificación de Señales:** Los transistores pueden amplificar señales débiles, lo que es esencial en radios, televisores y equipos de audio.
+
+**Conmutación:** Se utilizan para encender o apagar dispositivos eléctricos, como en fuentes de alimentación, sistemas de control y computadoras.
+
+**Circuitos Integrados:** Forman la base de los circuitos integrados, que son fundamentales en microprocesadores y microcontroladores.
+
+**Osciladores:** En combinación con otros componentes, los transistores pueden generar señales de frecuencia, utilizadas en transmisores y receptores.
+
+**Reguladores de Voltaje:** Pueden usarse para mantener un voltaje constante en circuitos eléctricos.
+
+**Sensores:** Algunos transistores se usan en sensores que detectan cambios en condiciones ambientales, como temperatura y luz.
+
+**Transistores Bipolares (BJTs):** Tienen tres capas de material semiconductor, formando dos uniones p-n. Los tipos más comunes son:
+
+  - Transistor NPN: Compuesto por una capa de material tipo p (positiva) entre dos capas tipo n (negativas).
+
+  - Transistor PNP: Compuesto por una capa tipo n entre dos capas tipo p.
+
+![image](https://github.com/user-attachments/assets/54c77e86-6c13-46f4-8ad4-a7734b133632)
+
+Estos transistores poseen 3 terminales: Base, colector y emisor. 
+
+<https://www.youtube.com/watch?v=dIV5l9cx_ck&ab_channel=Electr%C3%B3nicaFP>
+<https://www.youtube.com/watch?v=zh7PeHAZRLY&ab_channel=MentalidadDeIngenier%C3%ADa>
+
+**Actividad**
+
+![image](https://github.com/user-attachments/assets/cabd6d35-9a35-4c8f-ac9d-dbe8c71e817a)
+
+La conclusión es que al agregar un condensador de 100 μF en paralelo con la resistencia de 10 kΩ, el voltaje sobre la resistencia se mantiene más constante durante el ciclo negativo de la onda sinusoidal. Esto sucede porque el condensador se carga durante el ciclo positivo y luego ayuda a suministrar voltaje a la resistencia cuando la tensión de la fuente baja, suavizando así las fluctuaciones en el voltaje.
+
+![image](https://github.com/user-attachments/assets/9db274b6-9e9f-4a72-bb62-d7325efe5fba)
+
+**Breadboard**
+
+![image](https://github.com/user-attachments/assets/86a4c683-4a40-411c-8794-8bfede58e3ff)
+
+**Actividad esquematicos**
+
+![image](https://github.com/user-attachments/assets/fdc9f709-2fb8-4704-8123-b63e1da5588f)
+
+![image](https://github.com/user-attachments/assets/0a8d730f-bb2a-465f-821d-70e887612814)
+
+![image](https://github.com/user-attachments/assets/e83ee150-b2cf-488c-b520-403d5fe65395)
+
+![image](https://github.com/user-attachments/assets/e43dcf52-e41a-450a-8acc-62162baece81)
+
+![image](https://github.com/user-attachments/assets/e6482cd9-8b9f-480f-8981-3800fcaec27e)
+
+**Circuitos integrados**
+
+Los circuitos integrados (CI) son dispositivos electrónicos que combinan múltiples componentes, como transistores y resistencias, en una sola pieza de material semiconductor, típicamente silicio. Permiten realizar funciones electrónicas complejas de manera compacta y eficiente. Sus características principales incluyen miniaturización, que reduce el tamaño de los dispositivos electrónicos; eficiencia, al integrar múltiples funciones y mejorar el rendimiento; costo, ya que su fabricación en masa reduce los costos; y velocidad, debido a que las conexiones cercanas facilitan la rápida transferencia de señales. Los tipos de circuitos integrados son analógicos, que manejan señales continuas; digitales, que operan con señales discretas (0 y 1); y mixtos, que combinan funciones analógicas y digitales.
+
+![image](https://github.com/user-attachments/assets/11e1f97f-17da-4d7c-bca7-aa66e04b7334)
+
+En modo estable, el temporizador 555 actúa como un oscilador que genera una onda cuadrada. La frecuencia de la onda se puede ajustar cambiando los valores de dos resistencias y un condensador conectado al chip.
+
+**Circuito blink**
+
+![image](https://github.com/user-attachments/assets/9608ec46-eec7-469d-8bd9-05dff8d89c0e)
+
+R1: 4.7k Ohm
+R2: 4.7k Ohm
+R3: 1k Ohm
+C1: 100 μF capacitor
+
+Los valores de R1, R2 y C1 afectan la velocidad del parpadeo. Los valores más altos harán que el LED parpadee más lentamente, mientras que los valores más pequeños harán que el LED parpadee más rápido. La resistencia R3 está ahí para limitar la corriente al LED para que no se queme. Si desea establecer el parpadeo a una cierta velocidad, puede usar la fórmula al principio de este artículo para calcular la resistencia o capacitancia que necesita.
+
+
+**Blink controlado por potenciometro**
+
+![image](https://github.com/user-attachments/assets/f002e78b-e910-40b3-a572-10bcbce5bb0f)
+
+R1: 4.7k Ohm
+R2: 10k Ohm potenciómetro
+R3: 1k Ohm
+C1: 100 μF capacitor
+
+El ajuste del potenciómetro cambiará la velocidad del parpadeo del LED.
+
+**Blick Controlado por un fotoresistor**
+
+![image](https://github.com/user-attachments/assets/1640fec0-0ba4-4457-9f27-329c995040b3)
+
+R1: 4.7k Ohm
+R2: Fotoresitor
+R3: 1k Ohm
+C1: 100 μF capacitor
+
+La resistencia de un fotorresistor disminuye a medida que le incide más luz, por lo que el LED parpadea más rápidamente cuando se exponga a más luz.
+
+# **25/09**
+
 
