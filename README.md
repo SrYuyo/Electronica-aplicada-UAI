@@ -172,8 +172,55 @@ Un divisor de tensión es una configuración de circuito eléctrico que reparte 
 
 [https://www.youtube.com/watch?v=1-ucOtWF4W0&ab_channel=Shakmuria]
 
-**Clase 04/09**
+# **Clase 04/09**
+Cuando calculo el Voltaje en un punto veo cuanto cayó en ese punto y se debe restar con el voltaje total.
 
+**Actividad**
 
+Led conectado con una resistencia en serie con una resistencia de 1kohm. Tiene una iluminación normal, en cierta forma.
 
+![image](https://github.com/user-attachments/assets/aa8c53b5-face-4e64-9da5-86187eeb84d8)
+
+Ahora si la resistencia cambia a 100 ohms sale una advertencia, pues la cantidad de energía que pasa puede quemar el LED.
+
+![image](https://github.com/user-attachments/assets/1bef0a36-89b1-4bed-8f28-33569fc11bc5)
+
+La resistencia es tan baja (10m ohms) que el led se quema dada la cantidad de corriente que pasa.
+
+![image](https://github.com/user-attachments/assets/27f65f22-6ef1-4dcd-a786-9b80c35e3433)
+
+Al conectar una foto resistencia podemos regular la intensidad en la que se ilumina el led y además el voltaje se regula en base a la cantidad de luz que recibe la fotorresistencia de forma inversa. Este circuito es útil para luces automáticas.
+
+![image](https://github.com/user-attachments/assets/7d578496-4378-4193-ab48-231381d3081a)
+
+Al momento de agregar un motor con la foto resistencia hacemos que el voltaje se disminuya en base a la cantidad de luz recibida por la resistencia. En el caso de que haya mucha luz el motor recibe menos voltaje, por lo que mantiene la misma corriente y permite que gire más rápido, caso contrario el motor gira más lento, pero tiene más fuerza.
+
+![image](https://github.com/user-attachments/assets/dba23a43-8df8-4e80-b58c-c49c2750e4b8)
+
+**Como entender un circuito**
+
+Un diagrama de bloques te proporciona una visión general de cómo funcionan juntos los circuitos individuales en un sistema. Verás cada circuito representado como un "bloque" (rectángulo u otra forma, según la aplicación). Las líneas de interconexión, a veces con flechas en uno o ambos extremos, muestran cómo los circuitos se combinan para formar el sistema completo y cómo fluyen las corrientes y señales entre esos circuitos.
+
+![image](https://github.com/user-attachments/assets/4abcd1ee-dc61-44cb-83b3-4408d1c2cc7b)
+
+Un **diagrama esquemático** (a menudo simplemente llamado esquemático) muestra cada componente en un circuito. Cada  componente tiene su propio símbolo especial. Las líneas entre los componentes revelan cómo se conectan entre sí y a una fuente de alimentación, para que realicen una función u operación específica.
+
+![image](https://github.com/user-attachments/assets/66a9e7f1-6e32-4ea1-882f-81a89e9ee9a5)
+
+Un **diagrama pictórico** (a veces llamado layout diagram) muestra la disposición física de los componentes en una placa de circuito o chasis para que puedas identificarlos para su instalación, prueba o reemplazo. Algunos de estos "diagramas" son fotografías reales. Sin embargo, ten en cuenta que las imágenes rara vez revelan los eventos eléctricos que ocurren en un circuito o sistema. 
+
+![image](https://github.com/user-attachments/assets/f6feb8a6-faf4-48f9-ab0e-eb3ea65194af)
+
+**Condensadores**
+
+![image](https://github.com/user-attachments/assets/bbd60027-8ce3-40fb-bf89-5a01e4365d26)
+
+El condensador es otro componente electrónico, este permite almacenar energía en pequeñas cantidades para devolverla cuando sea necesario. 
+
+En su interior hay dos placas metálicas (armadura) y un material aislante (dieléctrico) en medio. Al haber tensión en el circuito se almacena carga en estas placas. 
+
+**Capacitancia:**
+La capacitancia (C) es la capacidad de un condensador para almacenar carga eléctrica. Se mide en faradios (F), y representa cuánta carga puede almacenar el condensador por cada voltio aplicado. La fórmula básica de la capacitancia es:
+
+$C=Q/V$
 
