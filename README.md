@@ -1,5 +1,5 @@
 # **Electronica-aplicada-UAI**
-Curso de electronica de lla UAI. En el hay codigos y teoria sobre Electronica y Arduino.
+Curso de electrónica de la UAI. En él hay códigos y ejercicios sobre electrónica además de Arduino.
 
 # Clase 14/08
 La electricidad se define como el flujo de una carga eléctrica, mediante los electrones. 
