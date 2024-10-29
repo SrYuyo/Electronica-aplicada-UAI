@@ -373,4 +373,109 @@ La resistencia de un fotorresistor disminuye a medida que le incide más luz, po
 
 # **25/09**
 
+Hernando Barragán creador del código base de arduino
+
+Arduino es una plataforma de hardware y software de código abierto que facilita la creación y desarrollo de proyectos electrónicos interactivos. Diseñada para ser accesible tanto para principiantes como para expertos, Arduino ha ganado popularidad en el ámbito de la educación, la robótica, las instalaciones artísticas y el desarrollo de prototipos. La flexibilidad de la plataforma permite a los usuarios programar, experimentar y construir dispositivos que pueden interactuar con el entorno físico, lo que la convierte en una herramienta clave en el movimiento de hardware libre. 
+
+
+**Parte del hardware**
+
+El hardware de Arduino consiste en una serie de placas de desarrollo que contienen un microcontrolador y diversas interfaces de entrada y salida. La placa más conocida es la Arduino Uno, que incluye: 
+  
+  - Microcontrolador: El corazón de la placa, generalmente un ATmega328, que ejecuta el código que el usuario carga en el dispositivo.
+
+  - Pines de Entrada/Salida (I/O): Permiten la conexión de sensores y actuadores. Estos pines pueden ser digitales (para encender/apagar) o analógicos (para leer voltajes variables).
+
+  - Conectividad: Muchas placas Arduino ofrecen conectividad USB para la programación y la alimentación del microcontrolador, así como opciones para comunicación inalámbrica o por medio de módulos adicionales (como WiFi o Bluetooth).
+
+  - Alimentación: Las placas pueden estar alimentadas por diferentes fuentes, como USB, fuentes externas de corriente o baterías, lo que las hace adecuadas para una variedad de proyectos.
+
+
+**Parte de software**
+
+El software de Arduino se basa en el IDE (Entorno de Desarrollo Integrado), que permite a los usuarios escribir y cargar código a la placa. Este software incluye:
+
+Lenguaje de Programación: El lenguaje utilizado por Arduino es una variante simplificada de C/C + +, lo que permite a los usuarios programar lógicamente sus dispositivos con un conjunto de funciones y bibliotecas específicas que facilitan la manipulación del hardware. 
+
+Bibliotecas: Arduino incluye una gran variedad de bibliotecas que permiten a los usuarios interactuar fácilmente con componentes como motores, sensores, pantallas y más, ahorrando tiempo y esfuerzo en la codificación. 
+
+Sketch: El código que se escribe se conoce como "sketch", y se compila y carga en la placa a través del IDE. Esto permite que la placa ejecute automáticamente las instrucciones cada vez que se enciende. 
+
+Comunicación Serial: El software permite la comunicación serial entre el ordenador y la placa, lo que es útil para la depuración y para enviar o recibir datos de dispositivos externos.
+
+
+**Placa arduino UNO R3**
+
+![image](https://github.com/user-attachments/assets/22046ba9-9176-40d9-bd36-f0399d084ce5)
+
+**Variables**
+
+Las variables se utilizan para almacenar datos que pueden ser utilizados y manipulados durante la ejecución de un programa (sketch). 
+
+int: Utilizada para almacenar números enteros, máximo de 16 bits.
+
+float: Números decimales.
+
+char: Caracteres. Utilizar ’’ para almacenar información. Apostrofe o comilla simple.
+
+boolean: Almacena true o false.
+
+byte: Almacena números enteros de 0 a 255.
+
+String: Almacena texto. Utilizar “”. Comillas dobles.
+
+**Links de referencia:**
+
+[https://www.arduino.cc/reference/es/ ]
+
+[https://arduino.cl/introduccion-a-los-tipos-de-dato-con-arduino/]
+
+**Funciones**
+
+setup(): Esta función se ejecuta una vez al inicio del programa y se utiliza para configurar los parámetros iniciales, como definir los modos de los pines (entrada o salida). 
+
+loop(): Esta función se ejecuta en un ciclo continuo después de la función setup(). Aquí es donde se coloca el código que debe ejecutarse repetidamente.
+
+**Estas dos funciones están si o si en el sketch**
+
+Definidas por el usuario:  Permite realizar tareas personalizadas. Permiten agrupar código relacionado y pueden tomar parámetros y devolver valores.
+
+```cpp
+int suma(int a, int b) {
+  return a + b; // Retorna la suma de a y b
+}
+
+```
+
+Funciones de programa: Arduino incluye muchas bibliotecas que proporcionan funciones adicionales para trabajar con componentes como sensores y motores. Por ejemplo, la biblioteca Servo proporciona funciones para controlar servomotores. 
+
+```cpp
+#include <Servo.h> // Incluir la biblioteca Servo
+
+Servo miServo; // Crear un objeto Servo
+
+void setup() {
+  miServo.attach(9); // Conectar el servomotor al pin 9
+}
+
+void loop() {
+  miServo.write(90); // Mueve el servo a 90 grados
+  delay(1000);       // Espera 1 segundo
+  
+  miServo.write(0);  // Mueve el servo a 0 grados
+  delay(1000);       // Espera 1 segundo
+}
+```
+
+**pinMode(). digitalWrite**
+
+La función pinMode() indica si un pin es utilizado como entrada o como salida. Para utilizarla le entregas el número del pin a configurar y la constante INPUT o OUTPUT. Cuando un pin es configurado como entrada, el puede detectar el estado de un sensor. Una salida, puede controlar a un actuador como por ejemplo un LED.
+
+La función digitalWrite() cambia el valor de un pin. Por ejemplo, en la siguiente línea configura el ledPin (pin 13) como HIGH, es decir 5 Volts. Si cambiamos por un LOW el pin entregará 0 Volts.
+
+**Analogo v/s digital**
+
+![image](https://github.com/user-attachments/assets/e436163d-a3f6-4ec4-b8e4-e98d3e8bccad)
+
+**Actividad**
 
