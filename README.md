@@ -477,5 +477,6 @@ La función digitalWrite() cambia el valor de un pin. Por ejemplo, en la siguien
 
 ![image](https://github.com/user-attachments/assets/e436163d-a3f6-4ec4-b8e4-e98d3e8bccad)
 
-**Actividad**
+**Actividad SOS o blink**
+
 
