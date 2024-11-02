@@ -479,4 +479,7 @@ La función digitalWrite() cambia el valor de un pin. Por ejemplo, en la siguien
 
 **Actividad SOS o blink**
 
+# **Clase 02/10**
+
+
 
