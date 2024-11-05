@@ -251,11 +251,14 @@ La **inductancia** (L) es la propiedad del inductor que determina la cantidad de
 
 La fórmula básica que describe la inductancia es:
 
-$V=L dL/dT$
+$V=L*dL/dT$
 
 **V** es la tensión inducida (voltaje) en voltios (V)
+
 **L** es la inductancia en henrios (H)
-$**dI/dt**$ es la tasa de cambio de la corriente en amperios por segundo (A/s)
+
+$dI/dt$ es la tasa de cambio de la corriente en amperios por segundo (A/s)
+
 
 Esta fórmula indica que el voltaje inducido en el inductor es proporcional a la rapidez con la que cambia la corriente.
 
@@ -266,13 +269,14 @@ Esta fórmula indica que el voltaje inducido en el inductor es proporcional a la
 **Interruptores**
 
 ![image](https://github.com/user-attachments/assets/0a8634d2-ed91-4de3-8bef-4d0018d29725)
+
 ![image](https://github.com/user-attachments/assets/e842efb0-bc14-4f2a-bcb1-5ac66378f54b)
 
 **Fuentes de alimentación**
 
 ![image](https://github.com/user-attachments/assets/e890ca17-733c-409c-b847-12c632d3962b)
 
-# **11/09**
+# **Clase 11/09**
 
 ![image](https://github.com/user-attachments/assets/7f046d13-4286-4e1b-baee-48fce6c30e55)
 
@@ -303,15 +307,46 @@ Los transistores tienen una amplia variedad de aplicaciones en la electrónica, 
 Estos transistores poseen 3 terminales: Base, colector y emisor. 
 
 <https://www.youtube.com/watch?v=dIV5l9cx_ck&ab_channel=Electr%C3%B3nicaFP>
+
 <https://www.youtube.com/watch?v=zh7PeHAZRLY&ab_channel=MentalidadDeIngenier%C3%ADa>
 
-**Actividad**
 
-![image](https://github.com/user-attachments/assets/cabd6d35-9a35-4c8f-ac9d-dbe8c71e817a)
+**Actividad:**
 
-La conclusión es que al agregar un condensador de 100 μF en paralelo con la resistencia de 10 kΩ, el voltaje sobre la resistencia se mantiene más constante durante el ciclo negativo de la onda sinusoidal. Esto sucede porque el condensador se carga durante el ciclo positivo y luego ayuda a suministrar voltaje a la resistencia cuando la tensión de la fuente baja, suavizando así las fluctuaciones en el voltaje.
+![image](https://github.com/user-attachments/assets/32b1e006-8edc-452f-b59c-fbd09e890602)
 
-![image](https://github.com/user-attachments/assets/9db274b6-9e9f-4a72-bb62-d7325efe5fba)
+En el circuito original, utilizamos un generador de función para alimentar el circuito con una onda sinusoidal de 10 Hz y una amplitud de 5V. La amplitud de 5V significa que la señal oscilará entre +5V y -5V. La resistencia de 10 kΩ se conecta como carga en este circuito:
+
+**Funcionamiento del Circuito:**
+
+  - Cuando el generador suministra la onda sinusoidal, la resistencia permite el paso de corriente eléctrica. El osciloscopio se utiliza para medir el voltaje sobre la resistencia. Este voltaje variará en función de la forma de onda suministrada por el generador.
+
+  - Durante el ciclo positivo de la onda, la corriente fluye a través de la resistencia, y el voltaje sobre ella será positivo. En el ciclo negativo, la corriente cambia de dirección y el voltaje sobre la resistencia será negativo.
+
+Al modificar el circuito agregando un condensador de 100 µF en paralelo con la resistencia de 10 kΩ:
+![image](https://github.com/user-attachments/assets/5d6cd8eb-89cd-4fa6-9a99-6b1942ffb732)
+
+Efecto del Condensador:
+
+El condensador, al estar en paralelo, se carga durante el ciclo positivo de la onda. A medida que el voltaje aumenta, el condensador se carga y almacena energía.
+Cuando la señal pasa al ciclo negativo, el condensador comienza a descargar su carga. Esto significa que el voltaje medido sobre la resistencia cambiará de manera más gradual, manteniendo ciertos niveles positivos de voltaje incluso cuando la señal de entrada del generador cambia a negativo.
+
+Observación en el Osciloscopio:
+
+Al observar el osciloscopio después de la modificación, el voltaje sobre la resistencia no cae tan drásticamente como lo hacía anteriormente. En su lugar, hay un relleno que mantiene el voltaje positivo un poco más de tiempo, debido a la descarga del condensador. Este fenómeno es el que produce una respuesta más suavizada en el voltaje sobre la resistencia.
+
+Ciclo Positivo de la Onda:
+
+Durante el ciclo positivo de la onda sinusoidal, la corriente fluye desde el generador de función hacia la resistencia y hacia el condensador. A medida que el voltaje alcanza su pico positivo, el condensador se carga, aumentando el voltaje sobre la resistencia.
+
+Ciclo Negativo de la Onda:
+
+En el ciclo negativo, la corriente cambia de dirección. La corriente fluye ahora desde el condensador hacia la resistencia. Como resultado, el condensador comienza a descargar su carga, suministrando corriente a la resistencia incluso cuando la señal del generador se vuelve negativa. Esto mantiene el voltaje sobre la resistencia más alto durante una parte del ciclo negativo.
+
+El álgebra de Boole es una herramienta esencial en la electrónica moderna, ya que proporciona un marco matemático para el diseño y análisis de circuitos lógicos. Su capacidad para simplificar expresiones lógicas y realizar operaciones binarias es fundamental para el funcionamiento de dispositivos digitales, computadoras y sistemas de control, y su relevancia sigue creciendo con el avance de la tecnología.
+
+![image](https://github.com/user-attachments/assets/18b3f34c-5e7c-4d07-9487-1e6abc298b4c)
+
 
 **Breadboard**
 
@@ -371,7 +406,7 @@ C1: 100 μF capacitor
 
 La resistencia de un fotorresistor disminuye a medida que le incide más luz, por lo que el LED parpadea más rápidamente cuando se exponga a más luz.
 
-# **25/09**
+# **Clase 25/09**
 
 Hernando Barragán creador del código base de arduino
 
