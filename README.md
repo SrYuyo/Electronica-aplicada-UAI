@@ -514,7 +514,320 @@ La función digitalWrite() cambia el valor de un pin. Por ejemplo, en la siguien
 
 **Actividad SOS o blink**
 
+![image](https://github.com/user-attachments/assets/957fdeb2-78dc-4ce4-a515-0411da3a9641)
+
+En el sigueinte codigo es una señal de SOS o pestañeo de un led. De todas formas eiste un chip que hace esta función. Cabe destacar que se uso una placa Arduino uno R3 y una versión de Arduino IDE 2.3.3
+
+```cpp
+void setup() {
+  pinMode(8, OUTPUT);
+
+
+}
+
+void loop() {
+  //Letra O
+  digitalWrite(8, HIGH); //Punto
+  delay(300);           
+  digitalWrite(8, LOW); //Pausa
+  delay(300);
+  digitalWrite(8, HIGH); //Punto
+  delay(300);           
+  digitalWrite(8, LOW); //Pausa
+  delay(300);
+  digitalWrite(8, HIGH); //Punto
+
+  //Pausa Larga
+  delay(900);
+  //Letra S
+  digitalWrite(8, HIGH); //Punto
+  delay(900);           
+  digitalWrite(8, LOW); //Pausa
+  delay(300);
+  digitalWrite(8, HIGH); //Punto
+  delay(900);           
+  digitalWrite(8, LOW); //Pausa
+  delay(300);
+  digitalWrite(8, HIGH); //Punto
+
+  //Pausa Larga
+  delay(900);
+ 
+  //Letra O
+  digitalWrite(8, HIGH); //Punto
+  delay(300);           
+  digitalWrite(8, LOW); //Pausa
+  delay(300);
+  digitalWrite(8, HIGH); //Punto
+  delay(300);           
+  digitalWrite(8, LOW); //Pausa
+  delay(300);
+  digitalWrite(8, HIGH); //Punto
+
+  //Pausa Larga
+  delay(900);
+}
+```
+
+Otro posible codigo eficiente puede ser el siguiente:
+
+```cpp
+const int ledPin = 8;   //pin del LED
+const int duracionP = 300;     // duración del punto
+const int pausa = 900;     // duración de la pausa larga
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  SOS('O');
+  delay(pausa); 
+  SOS('S'); 
+  delay(pausa); 
+  SOS('O');
+  delay(pausa);
+}
+
+void SOS(char letter) {
+  switch (letter) {
+    case 'O':
+    
+      for (int i = 0; i < 3; i++) {
+        digitalWrite(ledPin, HIGH); 
+        delay(duracionP);          
+        digitalWrite(ledPin, LOW);  
+        delay(duracionP);          
+      }
+      break;
+
+    case 'S':
+
+      for (int i = 0; i < 3; i++) {
+        digitalWrite(ledPin, HIGH); 
+        delay(duracionP);          
+        digitalWrite(ledPin, LOW);  
+        delay(duracionP);          
+      }
+      break;
+
+    default:
+      break;
+  }
+}
+
+```
+
+SOS variable
+![image](https://github.com/user-attachments/assets/e55d0759-9b3c-4a24-859e-797b1ccab8cb)
+
+
+
+![image](https://github.com/user-attachments/assets/a092e44a-793f-43ad-86c0-79fe3fc0cd3a)
+
+```cpp
+void setup() {
+  pinMode(8, OUTPUT); //rojo
+  pinMode(7, OUTPUT); //verde
+
+}
+
+void loop() {
+  //Verde
+  digitalWrite(8, HIGH); //rojo
+  delay(4000);        
+  digitalWrite(8, LOW);
+  digitalWrite(7, HIGH); //verde
+  delay(4000);
+
+  //parpadeo
+  digitalWrite(7, HIGH);
+  delay(2000);           
+  digitalWrite(7, LOW);
+  delay(1000);
+  digitalWrite(7, HIGH);
+  delay(500);
+  digitalWrite(7, LOW);
+  delay(200);
+  digitalWrite(7, HIGH);
+  delay(200);
+  digitalWrite(7, LOW);
+
+  digitalWrite(8, HIGH);
+}
+```
+
+```cpp
+void setup() {
+  //semaforo 1
+  pinMode(8, OUTPUT); //rojo
+  pinMode(7, OUTPUT); //amarillo
+  pinMode(6, OUTPUT); //verde
+
+  //semaforo 2
+  pinMode(13, OUTPUT); //rojo
+  pinMode(12, OUTPUT); //amarillo
+  pinMode(11, OUTPUT); //verde
+
+}
+
+void loop() {
+  
+  //estado incial
+  digitalWrite(8, HIGH); //rojo semaforo 1
+  digitalWrite(11, HIGH); //verde semaforo 2
+  delay(4000);
+  
+  //transición
+  digitalWrite(11, LOW); //verde semaforo 2
+  digitalWrite(12, HIGH); //amarillo semaforo 2
+  delay(1000);
+  digitalWrite(12, LOW); //amarillo semaforo 2
+  digitalWrite(13, HIGH); //rojo semaforo 2
+  digitalWrite(8, LOW); //rojo semaforo 1
+  digitalWrite(6, HIGH); //verde semaforo 1
+  delay(4000);
+  digitalWrite(6, LOW);
+  digitalWrite(7, HIGH); //amarillo semaforo 1
+  delay(1000);
+  digitalWrite(7, LOW); //amarillo semaforo 1
+  digitalWrite(13, LOW);
+
+}
+
+```
+
+![image](https://github.com/user-attachments/assets/be2f7106-80a3-4664-b3e8-26f76f38e732)
+
+
+Arduino cuenta con 13 pines configurables como entradas o salidas, siendo entradas por defecto. Es recomendable mantener las entradas en un estado conocido, utilizando resistencias de pull-up (conectadas a +5V) o pull-down (conectadas a tierra), siendo una resistencia de 10K un buen valor. Cuando un pin se configura como salida, puede proporcionar un máximo de 40 mA sin dañarse, lo cual es suficiente para encender un LED (junto con una resistencia en serie), pero no para la mayoría de los relés, solenoides o motores. En caso de un cortocircuito en uno de los pines, este puede dañarse mientras que el resto del microcontrolador seguirá funcionando, por lo que se recomienda usar una resistencia de 470 ohmios o 1K ohmios para limitar la corriente.
+
+
+Para un pulsador tenemos qeu conectarlo a una resistencia pull-up o pull-down para darle un valor definido a la entrada del Arduino cuando no esté pulsado. 
+
+![image](https://github.com/user-attachments/assets/7b954343-ede3-4427-9496-7bbb609ad523)
+
+Cuando un pulsador en un circuito con Arduino, es crucial emplear una resistencia pull-up o pull-down para garantizar que la entrada tenga un estado definido cuando el pulsador no está presionado. 
+
+Resistencia Pull-Up: Se conecta entre el pin de entrada y el voltaje positivo (+5V). Cuando el pulsador está abierto, el pin está en estado alto (HIGH). Al presionar el pulsador, se conecta a tierra (GND), cambiando el pin a estado bajo (LOW).
+
+Resistencia Pull-Down: Se conecta entre el pin de entrada y tierra (GND). Sin presionar el pulsador, el pin está en estado bajo (LOW). Al presionar el pulsador, se conecta a +5V, llevando el pin a estado alto (HIGH).
+
+Generalmente se utilizan resistencias de 10K ohmios. En Arduino, también se pueden habilitar resistencias pull-up internas con el comando pinMode(pin, INPUT_PULLUP). Esto evita la necesidad de resistencias externas.
+
+**Conexión de pulsadores tipo push**
+
+![image](https://github.com/user-attachments/assets/e387765d-430c-43e7-80e6-fe267a1cbb00)
+
+
+![image](https://github.com/user-attachments/assets/56e352f6-4d7b-4220-93c2-d2d05c5f0fc1)
+
+
+```cpp
+//Se establece el modo como INPUT
+pinMode(pin, INPUT);
+
+//Se lee el valor del pin con digitalRead() y se almacena la lectura en una //variable previamente declarada. La lectura será 1 (HIGH) o 0 (LOW).
+
+int lectura;
+lectura = digitalRead(pin);
+```
+
+
+**Estructura if else**
+
+```cpp
+if (temperatura > 30){
+  irPlaya();
+}
+
+else if (temperatura < 5){
+  meterseCama();
+}
+
+else {
+  estudiarElectronica();
+}
+
+```
+
+**Actividad**
+![image](https://github.com/user-attachments/assets/4c69e9ea-4bb2-4bad-ac33-8ade613b2332)
+
 # **Clase 02/10**
 
+El microcontrolador Atmega en Arduino cuenta con un conversor analógico-digital (A/D) de 6 canales. Este conversor tiene una resolución de 10 bits, lo que permite obtener valores enteros entre 0 y 1023. Aunque su función principal es leer sensores, los pines analógicos también pueden utilizarse como entradas o salidas discretas de propósito general (GPIO), al igual que los pines numerados del 0 al 13.
+
+Codigo de lectura para pines analogicos
+
+```cpp
+//No es necesario establecer el modo del pin analógico.
+//Se lee el valor del pin con analogRead() y se almacena la lectura en una
+//variable int previamente declarada. La lectura será un valor entre 0 y 1023
+
+int lectura_analogica
+lectura_analógica = analogRead(pin);
+
+/*
+¿Por qué analogRead() va de 0 a 1023?
+Porque el convertidor análogo-digital de Arduino tiene 10 bits, y por
+lo tanto hay 210 (=1024) valores posibles
+*/
+
+```
+
+Aprovechemos la ventaja del Pin Analógico para hacer la lectura de varios botones. Como sabes, el valor analógico varía de 0 a 1023, lo que significa un rango de entrada de 0 a 5V. Utilizando el método del divisor de voltaje para cada botón, diferentes caídas de voltaje debido a diferentes valores de resistencias a través de cada botón tendrán diferentes salidas de voltaje, por lo tanto, cada botón puede ser identificado usando solo un pin analógico. En la placa Arduino UNO, el Pin Analógico ocupado para la función de botón está fijado en A0.
 
 
+![image](https://github.com/user-attachments/assets/73334d55-f8d1-428b-963a-450914b4317d)
+
+![image](https://github.com/user-attachments/assets/11837640-94d2-42ba-86b7-3c37314e8857)
+
+**Actividad** HACER!!!
+
+![image](https://github.com/user-attachments/assets/697c8115-4b85-4822-a732-3841b1032a96)
+
+![image](https://github.com/user-attachments/assets/1e962a08-150f-4c34-a692-599cfabcd32e)
+
+
+**Interfaz de arduino**
+![image](https://github.com/user-attachments/assets/dcf6d12d-9b5c-4901-95dc-f987d4ac6e68)
+
+```cpp
+//Se inicializa la conexión Serial en el setup().
+//El argumento es la velocidad de transmisión de datos (baud rate)
+
+void setup(){
+  Serial.begin(9600);
+}
+
+void loop () {
+
+  int variable
+  variable = analogRead(pin);
+  Serial.print(variable); //Muestra un valor en el Monitor Serial
+  Serial.println(variable); //Muestra en una línea nueva
+}
+
+
+```
+
+**Serial Plotter** es una herramienta en Arduino IDE que permite graficar datos enviados por el puerto serial en tiempo real, facilitando así la visualización de datos analógicos, como lecturas de sensores. Para utilizar Serial Plotter, se debe abrir el menú "Herramientas", seleccionar "Serie" y luego hacer clic en "Monitor de serie". En el Monitor de serie, se debe hacer clic en el botón "Plotter" en la esquina superior derecha. Una vez abierto, se pueden enviar datos al monitor de serie utilizando la función `Serial.println()`. Por ejemplo, si hay un sensor conectado al pin analógico A0, se puede leer su valor y enviarlo al monitor de serie usando un código apropiado.
+
+Además de esto se puedne graficar distintas variables de la siguiente manera en el codigo:
+
+```cpp
+int valor;
+void setup (){
+  Serial.begin(9600);
+}
+
+void loop(){
+  valor = analogRead(A0);
+  Serial.print(valor);
+  Serial.print(",");
+  Serial.println(valor/2);
+}
+```
+
+# **Clase 9/10**
