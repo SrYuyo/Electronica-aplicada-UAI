@@ -1323,7 +1323,66 @@ Las librerías de Arduino son colecciones de código preescrito que facilitan la
 
 **Servo motores**
 
-
-
 Vídeo: [https://www.youtube.com/watch?v=mk9UkQCeENc]
+
+**Actividad**
+
+![image](https://github.com/user-attachments/assets/00846621-96c6-44f1-8e7f-a892e11d0612)
+
+
+![image](https://github.com/user-attachments/assets/5342434d-71a5-4f10-ab09-4f7080d6e2d4)
+
+
+```cpp
+#include <Servo.h>
+Servo myServo; 
+
+const int potPin = A0;
+
+void setup() {
+  myServo.attach(9);
+}
+
+void loop() {
+  int potValue = analogRead(potPin);
+  int angle = map(potValue, 0, 1023, 0, 180);
+  
+  myServo.write(angle);
+}
+```
+
+**Motores Stepper**
+
+![image](https://github.com/user-attachments/assets/095d123e-1db8-4763-9fc0-81c93a821d3d)
+
+
+Los motores paso a paso (o stepper motors) son un tipo de motor eléctrico que divide una rotación completa en múltiples pasos discretos. Este diseño les permite proporcionar un control preciso del movimiento, lo que los hace ideales para aplicaciones en las que se requiere un posicionamiento exacto, como en robots, impresoras 3D, sistemas CNC y cámaras.
+
+
+Características de los Motores Paso a Paso:
+  - Control de Posición: Los motores paso a paso pueden ser controlados para moverse en incrementos fijos, lo que permite el posicionamiento preciso sin necesidad de un sistema de retroalimentación (feedback).
+
+  - Tipos de Motores Paso a Paso:
+    * Motores de paso unipolares: Tienen un devanado adicional que permite simplificar el control, pero son menos eficientes.
+    * Motores de paso bipolares: Tienen dos devanados y ofrecen más torque y eficiencia, pero requieren un controlador más complejo para invertir la corriente.
+
+  - Paso Completo y Paso Fraccionado: Los motores pueden ser controlados en modo de "paso completo", donde el motor se mueve de un paso a otro, o en modo de "paso fraccionado", lo que permite un movimiento más suave y más posiciones intermedias.
+
+  - Torque y Velocidad: Los motores paso a paso proporcionan un buen torque a bajas velocidades, pero con un torque que decae a medida que aumenta la velocidad.
+
+  - Controladores: Los motores paso a paso normalmente requieren un controlador que pueda enviar las señales adecuadas para hacer que el motor gire. Estos controladores pueden ser ICs especiales diseñados para el control de motores, como el A4988 o DRV8825.
+    
+  - Ventajas de los Motores Paso a Paso:
+    * Precisión: Se puede controlar su posición y velocidad de manera precisa.
+    * Simplicidad en el Diseño: A menudo no requieren sistemas de retroalimentación, lo que simplifica el diseño del control.
+    * Estabilidad: Mantienen su posición incluso cuando no están alimentados si se les aplica un torque.
+
+  - Desventajas de los Motores Paso a Paso:
+    * Limitaciones de Velocidad: No son ideales para aplicaciones de alta velocidad.
+    * Calor: Pueden calentarse si se utilizan en condiciones de funcionamiento continuas.
+    * Requerimiento de Controlador: Necesitan controladores especiales, lo que añade complejidad al circuito.
+
+
+![image](https://github.com/user-attachments/assets/3a57e345-4348-4e68-8763-d6d7cf11c61f)
+
 
