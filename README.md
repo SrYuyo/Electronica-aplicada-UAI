@@ -1327,6 +1327,52 @@ Vídeo: [https://www.youtube.com/watch?v=mk9UkQCeENc]
 
 **Actividad**
 
+![image](https://github.com/user-attachments/assets/8faf8f56-6b70-47c5-b5f0-b025acbcbaec)
+
+
+![image](https://github.com/user-attachments/assets/8ed19994-69d2-4b60-ac30-d29b8afb7cbf)
+
+```cpp
+const int motorPin = 9;      
+const int switchPin = 7;     
+bool motorEnabled = false;   
+
+void setup() {
+  pinMode(motorPin, OUTPUT);                
+  pinMode(switchPin, INPUT_PULLUP);         
+  Serial.begin(9600);                       
+}
+
+void loop() {
+  
+  if (digitalRead(switchPin) == LOW) {
+    motorEnabled = true; 
+    Serial.println("Motor Activado");
+  } else {
+    motorEnabled = false; 
+    digitalWrite(motorPin, LOW); 
+    Serial.println("Motor Desactivado");
+  }
+
+
+  if (motorEnabled && Serial.available() > 0) {
+    int speed = Serial.parseInt();
+
+    if (speed < 0) {
+      speed = 0;
+    } else if (speed > 255) {
+      speed = 255;
+    }
+
+    analogWrite(motorPin, speed);
+    Serial.print("Velocidad del motor ajustada a: ");
+    Serial.println(speed);
+  }
+}
+```
+
+**Actividad**
+
 ![image](https://github.com/user-attachments/assets/00846621-96c6-44f1-8e7f-a892e11d0612)
 
 
@@ -1384,5 +1430,6 @@ Características de los Motores Paso a Paso:
 
 
 ![image](https://github.com/user-attachments/assets/3a57e345-4348-4e68-8763-d6d7cf11c61f)
+
 
 
