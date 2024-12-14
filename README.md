@@ -1032,4 +1032,282 @@ void loop() {
 }
 ```
 
+**Actividad**
 
+Desarrolle un sketch utilizando un ciclo for que incremente y decremente lentamente el brillo de un LED desde el mínimo al máximo con todos los niveles posibles (255)
+
+![image](https://github.com/user-attachments/assets/421d00d4-d19c-47a3-bc0f-296274ca4a29)
+
+```cpp
+const int ledPin = 9;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  for (int brightness = 0; brightness <= 255; brightness++) {
+    analogWrite(ledPin, brightness);
+  }
+  
+  for (int brightness = 255; brightness >= 0; brightness--) {
+    analogWrite(ledPin, brightness);
+  }
+}
+```
+
+![image](https://github.com/user-attachments/assets/4b4e551e-9bf9-48af-8ffa-8c326ce870d6)
+
+Este código intenta realizar un ciclo que imprime el número 5 diez veces, pero debido a que i se restablece a 5 en cada iteración, el ciclo nunca termina, lo que causa que el código permanezca en un bucle infinito, imprimiendo repetidamente el número 5 y nunca llegando a la línea que dice "for loop over". Para que el ciclo imprimiera el número de 0 a 9 (es decir, diez números en total), la línea i = 5; debería eliminarse del ciclo for. El código corregido quedaría así:
+
+
+```cpp
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  for (int i = 0; i < 10; i++) {
+    Serial.println(i);
+  }
+  Serial.println("for loop over\n");
+  while (true);
+}
+```
+
+# **Clase 16/10**
+
+
+Los ciclos while en Arduino son estructuras de control que permiten ejecutar un bloque de código repetidamente mientras se cumpla una condición específica. La sintaxis general de un ciclo while es:
+
+```cpp
+while (condición) {
+    // Código a ejecutar mientras la condición sea verdadera
+}
+```
+
+Un ejemplo más aplicado en codigo puede ser el siguiente:
+
+```cpp
+const int ledPin = 9;
+const int buttonPin = 2;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT);
+}
+
+void loop() {
+  while (digitalRead(buttonPin) == HIGH) {
+    digitalWrite(ledPin, HIGH);
+    delay(500);
+    digitalWrite(ledPin, LOW);
+    delay(500);
+  }
+}
+```
+El ciclo while comprueba si el botón conectado al pin digital 2 está presionado (HIGH). Mientras eso sea cierto, el LED en el pin 9 parpadea. Cuando el botón se suelta (LOW), el ciclo termina.
+
+
+**Puerto serial**
+
+![image](https://github.com/user-attachments/assets/eac78bc9-78e3-4b83-88d8-36c6dd4a54ee)
+
+![image](https://github.com/user-attachments/assets/16f33342-29d8-4bdb-b475-30d4f37fd13d)
+
+La función Serial.read() en Arduino se utiliza para leer datos que han sido enviados a través del puerto serie. Esta función permite recibir datos como caracteres individuales o bytes desde un dispositivo conectado, como un ordenador o un módulo de comunicación.
+
+En este ejemplo, el Arduino lee y muestra en el monitor serial un carácter enviado desde la computadora.
+
+```cpp
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  if (Serial.available() > 0) { // Verifica si hay datos disponibles
+    char incomingByte = Serial.read(); // Lee un byte
+    Serial.print("He recibido: ");
+    Serial.println(incomingByte); // Muestra el carácter en el monitor serial
+  }
+}
+```
+
+Recordar que un byte es una unidad de medida de datos que consta de 8 bits. Un bit es la unidad más pequeña de datos en informática, que puede tener un valor de 0 o 1. Por lo tanto, un byte, al ser un conjunto de 8 bits, puede representar 256 diferentes valores.
+
+
+![image](https://github.com/user-attachments/assets/88656cd4-f2d9-491b-838d-d4983fb1363e)
+
+
+![image](https://github.com/user-attachments/assets/3cf083e5-ad18-40fc-acc8-cfd97b791dbc)
+
+Es importante tener en cuenta que la función Serial.read() devuelve un valor entero, que puede ser convertido a un valor de carácter utilizando la función char(). Por ejemplo:
+
+```cpp
+void setup() {
+}
+Serial.begin(9600); // Inicializar el puerto serial a 9600 baudios
+void loop() {
+  if (Serial.available() > 0) { // Si hay datos en el buffer del puerto serial int datos
+  Serial.read(); // Leer un byte de datos del puerto serial
+  char caracter = char (datos); // Convertir el valor entero a un carácter
+  Serial.println(caracter); // Imprimir el carácter en el monitor serial
+```
+
+Este código lee un byte de datos del puerto serial y lo imprime en el monitor serial. La función Serial.available() se utiliza para verificar si hay datos disponibles en el buffer del puerto serial antes de leerlos. Para escribir datos en el puerto serial en Arduino, se utiliza la función Serial.write(). Esta función envía un byte de datos al buffer de salida del puerto serial. La función acepta un argumento que puede ser un número, un carácter o una cadena de caracteres.
+
+```cpp
+
+void setup() {
+  Serial.begin(9600); // Inicializar el puerto serial a 9600 baudios
+}
+void loop() {
+  Serial.write(65); // Enviar el número 65 al puerto serial
+  Serial.println("Hola mundo!"); // Enviar la cadena de caracteres "Hola mundo!"
+  delay(1000); // Esperar un segundo
+}
+```
+
+
+![image](https://github.com/user-attachments/assets/9075e00a-dc88-4041-b899-235b166517ca)
+
+**Actividad**
+
+Crea un código en Arduino en el cual cuando se envíe un número entre 1 a 9 a través del monitor serial, la placa haga parpadear el LED integrado (pin 13) el número de veces indicado.
+
+![image](https://github.com/user-attachments/assets/8a1c9b36-2754-42fe-bb2e-6b17f5b4fed5)
+
+```cpp
+int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    char valor = Serial.read();
+    int num = valor - '0';
+
+    if (num >= 1 && num <= 9) {
+      for (int i = 0; i < num; i++) {
+        digitalWrite(ledPin, HIGH);
+        delay(500);
+        digitalWrite(ledPin, LOW);
+        delay(500);
+      }
+    } else {
+      Serial.println("Por favor, ingresa un número entre 1 y 9.");
+    }
+  }
+}
+```
+
+**Funciones definidas por el usuario**
+
+Las funciones definidas por el usuario en Arduino son bloques de código que permiten realizar tareas específicas y reutilizarlas en diferentes partes del programa. Estas funciones ayudan a organizar el código, hacerlo más legible y manejable, además de facilitar la reutilización de código.
+
+```cpp
+tipo_de_retorno nombre_de_la_función(parámetros) {
+  // Cuerpo de la función
+}
+```
+
+Un ejemplo de las funciones del usuario es este ejemplo ilustra cómo utilizar funciones para leer un sensor de temperatura (simulado en este caso) y mostrar el resultado:
+
+
+```cpp
+const int sensorPin = A0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  float temperatura = leerTemperatura();
+  Serial.print("Temperatura: ");
+  Serial.println(temperatura);
+  delay(1000);
+}
+
+float leerTemperatura() {
+  int valorAnalogico = analogRead(sensorPin);
+  float voltage = valorAnalogico * (5.0 / 1023.0);
+  return (voltage - 0.5) * 100; // Conversión a grados Celsius
+}
+```
+
+Al dividir el código en funciones que realizan tareas específicas, se facilita la lectura, el mantenimiento y la reutilización del código, lo que resulta en un desarrollo más eficiente y menos propenso a errores.
+
+# **Clase 21/10**
+
+**Switch case**
+La estructura switch-case en Arduino es una forma de controlar el flujo del programa mediante la evaluación de una expresión en comparación con múltiples casos posibles. Es especialmente útil cuando se tienen varias condiciones que dependen del valor de una única variable, lo que puede hacer que el código sea más fácil de leer y mantener en comparación con múltiples declaraciones if-else.
+
+
+**Arreglos bidimensionales**
+
+![image](https://github.com/user-attachments/assets/492146e0-8f97-4693-b487-efc2fbeb5466)
+
+**Relays**
+
+![image](https://github.com/user-attachments/assets/09e5e8ce-5863-4bdf-9a58-273ac4243bbf)
+
+Los relés son dispositivos electromecánicos que actúan como interruptores controlados eléctricamente. En el contexto de Arduino, los relés se utilizan para controlar dispositivos de mayor potencia, como motores, luces, electrodomésticos y otros aparatos eléctricos, que no se pueden manejar directamente desde las salidas digitales del Arduino, debido a que estos dispositivos suelen requerir más corriente o voltaje del que el Arduino puede proporcionar.
+
+Componentes de un Relé:
+  - Bobina: Un componente electromagnético que, cuando se energiza, genera un campo magnético.
+  - Contacto Normalmente Abierto (NO): Un contacto que se cierra (conecta) cuando el relé está activado.
+  - Contacto Normalmente Cerrado (NC): Un contacto que se abre (desconecta) cuando el relé está activado.
+  - Cámara de Conmutación: Donde se encuentran los contactos y que permite el paso de corriente.
+  - Funcionamiento Básico: Cuando se aplica corriente a la bobina del relé, se activa el electromagnetismo, lo que hace que el contacto NO se cierre y, si corresponde, el NC se abra. Al cortar la corriente, el relé regresa a su estado normal, desconectando el circuito.
+
+Vídeo relays: [https://youtu.be/D73p_r_M70Q?t=54]
+
+![image](https://github.com/user-attachments/assets/29b7c56b-a946-421a-b271-e019cc041fa0)
+
+
+Vídeo transistores como interruptores: [https://youtu.be/sRVvUkK0U80]
+
+**Motores de CC**
+
+Los motores de corriente continua (CC) son dispositivos electromecánicos que convierten la energía eléctrica de una corriente continua en movimiento mecánico. Son ampliamente utilizados en diversas aplicaciones debido a su simplicidad, facilidad de control y versatilidad.
+
+Características Principales de los Motores de CC:
+  - Construcción: Generalmente, un motor de CC tiene dos partes principales: el rotor (o armadura), que es la parte giratoria, y el estator, que puede ser un imán permanente o una bobina que produce el campo magnético. Al aplicar un voltaje al motor, se crea un campo magnético que hace girar el rotor.
+
+  - Tipos de Motores de CC:
+    * Motores de CC con Escobillas: Utilizan escobillas para conducir corriente eléctrica hacia el rotor. Son simples y baratos, pero pueden requerir mantenimiento debido al desgaste de las escobillas.
+    * Motores de CC Sin Escobillas (BLDC): No utilizan escobillas, lo que aumenta la eficiencia y reduce el mantenimiento. Son ideales para aplicaciones de alta eficiencia y larga duración, aunque suelen ser más complejos y costosos.
+      
+  - Control de Velocidad: La velocidad de un motor de CC se puede controlar variando el voltaje aplicado en sus terminales. Usualmente, se utilizan métodos como la modulación de ancho de pulso (PWM) para controlar la velocidad de manera eficiente.
+
+  - Dirección de Giro: Cambiar la polaridad del voltaje aplicado al motor invierte el campo magnético y hace que el motor gire en la dirección opuesta.
+
+
+Video Motores CC: [https://www.youtube.com/watch?v=CWulQ1ZSE3c]
+
+**Puente H**
+
+![image](https://github.com/user-attachments/assets/50648309-5539-494a-b3e2-468200e337a9)
+
+![image](https://github.com/user-attachments/assets/200675c8-3909-4463-8f3c-aaba5d2e77f0)
+
+**Driver L293**
+
+El driver L293 es un módulo de controlador de motor que se utiliza para controlar motores de corriente continua (CC) y motores paso a paso. Permite a los microcontroladores, como el Arduino, controlar la dirección y la velocidad de los motores sin sobrecargar sus pines de salida, ya que el L293 puede manejar mayores voltajes y corrientes.
+
+Características Principales del L293:
+  - Puentes H (H-Bridge): El L293 utiliza una configuración de puente H, lo que permite controlar la dirección de un motor. Esto significa que puedes hacer que el motor gire en ambas direcciones (hacia adelante y hacia atrás).
+
+  - Voltaje de Alimentación: El L293 puede trabajar con voltajes de entrada de 4.5V a 36V, lo que lo hace compatible con una amplia gama de motores.
+
+  - Corriente: Cada canal del L293 puede suministrar hasta 600 mA continuo, y picos de hasta 1.2 A, lo que lo hace adecuado para motores de pequeñas y medianas aplicaciones.
+
+  - Seguridad: Está diseñado con diodos de protección que evitan daños en el circuito por retrocesos de corriente, lo que es común cuando se detienen motores.
+
+  - Control de Velocidad: Al usar modulación de ancho de pulso (PWM), se puede controlar la velocidad del motor, variando el ciclo de trabajo de la señal de control.
+
+
+![image](https://github.com/user-attachments/assets/1e15e632-928f-426f-9712-24da77de7c49)
