@@ -1313,3 +1313,17 @@ Características Principales del L293:
 ![image](https://github.com/user-attachments/assets/1e15e632-928f-426f-9712-24da77de7c49)
 
 
+**Librerías**
+
+Las librerías de Arduino son colecciones de código preescrito que facilitan la programación al proporcionar funciones y clases específicas para controlar hardware y realizar tareas comunes. Estas librerías permiten a los programadores ahorrar tiempo y esfuerzo, ya que encapsulan la complejidad de las interacciones con dispositivos específicos, como sensores, motores, pantallas, y comunicación, entre otros.
+
+![image](https://github.com/user-attachments/assets/d917a614-ec26-480f-a018-89561fa3692c)
+
+![image](https://github.com/user-attachments/assets/d702c4eb-0066-49c7-8a11-6d5f353e9ea5)
+
+**Servo motores**
+
+
+
+Vídeo: [https://www.youtube.com/watch?v=mk9UkQCeENc]
+
