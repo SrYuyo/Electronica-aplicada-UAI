@@ -814,7 +814,7 @@ void loop () {
 
 **Serial Plotter** es una herramienta en Arduino IDE que permite graficar datos enviados por el puerto serial en tiempo real, facilitando así la visualización de datos analógicos, como lecturas de sensores. Para utilizar Serial Plotter, se debe abrir el menú "Herramientas", seleccionar "Serie" y luego hacer clic en "Monitor de serie". En el Monitor de serie, se debe hacer clic en el botón "Plotter" en la esquina superior derecha. Una vez abierto, se pueden enviar datos al monitor de serie utilizando la función `Serial.println()`. Por ejemplo, si hay un sensor conectado al pin analógico A0, se puede leer su valor y enviarlo al monitor de serie usando un código apropiado.
 
-Además de esto se puedne graficar distintas variables de la siguiente manera en el codigo:
+Además de esto se pueden graficar distintas variables de la siguiente manera en el codigo:
 
 ```cpp
 int valor;
@@ -831,3 +831,205 @@ void loop(){
 ```
 
 # **Clase 9/10**
+
+Actividad
+![image](https://github.com/user-attachments/assets/4833a13c-0e04-4b2e-be3d-8e05e8ec0ebb)
+
+![image](https://github.com/user-attachments/assets/3ee9d2f0-4a02-4237-89ba-d13f936b8234)
+
+```cpp
+void setup() {
+  Serial.begin(9600); 
+}
+
+void loop() {
+  int potV = analogRead(A0); 
+  Serial.println(potV); 
+  delay(500); 
+}
+```
+
+**Actividad**
+
+![image](https://github.com/user-attachments/assets/346ecd4f-253c-4131-9e68-6ccaa587c0ac)
+
+![image](https://github.com/user-attachments/assets/f42ad981-9b7e-4fb7-bd4f-ce70d75b970e)
+
+```cpp
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int potV = analogRead(A0);
+
+   float voltage = potV * (5.0 / 1023.0);
+
+  Serial.print("Voltaje: ");
+  Serial.print(voltage);
+  Serial.println(" V");  
+}
+```
+
+**Función map**
+La función map() en Arduino es una función que permite transformar un número de un rango a otro, escalando el valor de entrada según los nuevos límites definidos. Esta función se usa donde es necesario convertir valores, como leer la entrada de sensores, y combinarlos con otras escalas que requieran un rango específico.
+
+La escritura de la función es la siguiente:
+
+long map(long x, long in_min, long in_max, long out_min, long out_max);
+
+  - x: El valor que deseas mapear.
+  - in_min: El límite inferior del rango de entrada.
+  - in_max: El límite superior del rango de entrada.
+  - out_min: El límite inferior del rango de salida.
+  - out_max: El límite superior del rango de salida.
+
+Para un ejemplo aplicado podemos suponer un potenciómetro que produce un valor entre 0 y 1023 (rango de entrada, in_min = 0, in_max = 1023) y queremos mapear ese valor a un rango entre 0 y 255 (rango de salida, out_min = 0, out_max = 255) para controlar el brillo de un LED.
+
+Un codigo con la función seria el siguiente: 
+
+```cpp
+const int potPin = A0; // Pin donde se conecta el potenciómetro
+const int ledPin = 9;  // Pin donde se conecta el LED
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(ledPin, OUTPUT); // Inicializa el pin del LED como salida
+}
+
+void loop() {
+  int potValue = analogRead(potPin); // Lee el valor del potenciómetro
+  int brillo = map(potValue, 0, 1023, 0, 255); // Mapea el valor de 0-1023 a 0-255
+
+  analogWrite(ledPin, brillo); // Ajusta el brillo del LED
+  Serial.print("Potenciómetro: ");
+  Serial.print(potValue);
+  Serial.print(" - Brillo LED: ");
+  Serial.println(brillo);
+}
+```
+
+Ahora bien una observación es que la función map() devuelve un valor de tipo long, se debe considerar que podría haber pérdida de precisión al trabajar en un contexto en el cual se requieran números en punto flotante.
+
+
+**Actividad**
+
+![image](https://github.com/user-attachments/assets/6bcbf09d-bf4d-4516-baba-2b777a6dc322)
+
+![image](https://github.com/user-attachments/assets/1d5cc0e1-eb15-45fd-81e3-1a7526284198)
+
+```cpp
+const int sensorPin = A0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int sensorV = analogRead(sensorPin);
+  float vol = sensorV * (5 / 1023);
+  float tempC = (vol - 0.5) * 100;
+  float tempF = (tempC * 9 / 5) + 32;
+
+  Serial.print("Temperatura = ");
+  Serial.print(tempC);
+  Serial.print("°C) ");
+  Serial.print(tempF);
+  Serial.print("°F)\n");
+  
+  Serial.print(tempC);
+  Serial.print(",");
+  Serial.println(tempF);
+
+}
+```
+
+![image](https://github.com/user-attachments/assets/4cf14a97-d562-4c14-9a04-1a2a2b9423ae)
+
+**Salida PWM**
+
+![image](https://github.com/user-attachments/assets/bb52ca60-292c-453d-8633-4509096b830f)
+
+El PWM esta disponible en los pines # 3, 5, 6, 9, 10, y 11 de la placa arduino UNO R3. Además el convertidor análogo-digital de Arduino tiene 10 bits, y por lo tanto hay 210 (=1024) valores posibles, y el PWM tiene solo 8 bits y por lo tanto solo hay 28 (=256) valores posibles.
+
+
+**Actividad**
+
+![image](https://github.com/user-attachments/assets/237926ae-ae39-4427-aa1b-579392ca81e5)
+
+![image](https://github.com/user-attachments/assets/ec0dfaa4-2372-46ab-aed7-92e6c187c0df)
+
+```cpp
+const int ledPin = 9;
+int nivel[] = {0, 64, 128, 255};
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  for (int i = 0; i < 4; i++) {
+    analogWrite(ledPin, nivel[i]);
+    delay(500);
+  }
+}
+```
+
+**Actividad**
+
+![image](https://github.com/user-attachments/assets/9f38735e-beb7-4b8f-837a-68a6130e7726)
+
+![image](https://github.com/user-attachments/assets/88ba56bd-c7e8-4cc8-a561-2bc1f1020109)
+
+```cpp
+const int potPin = A0;
+const int ledPin = 9;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int potValue = analogRead(potPin);
+  int ledValue = map(potValue, 0, 1023, 0, 255);
+  analogWrite(ledPin, ledValue);
+  
+  Serial.print("Valor Potenciómetro: ");
+  Serial.print(potValue);
+  Serial.print(" | Valor PWM del LED: ");
+  Serial.println(ledValue);
+}
+```
+
+**Ciclos for**
+
+ Los ciclos for en Arduino son estructuras de control que permiten ejecutar un bloque de código repetidamente un número específico de veces. La sintaxis general de un ciclo for es:
+
+for (inicialización; condición; incremento) {
+    // Código a ejecutar en cada iteración
+}
+
+![image](https://github.com/user-attachments/assets/1c9686c1-4d9c-4d36-88f4-fd54b7167f38)
+
+Un ejemplo en codigo es el siguiente:
+
+```cpp
+const int ledPin = 9;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  for (int i = 0; i < 10; i++) {
+    digitalWrite(ledPin, HIGH);
+    delay(500);
+    digitalWrite(ledPin, LOW);
+    delay(500);
+  }
+  return 0;
+}
+```
+
+
