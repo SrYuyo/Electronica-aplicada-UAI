@@ -1432,4 +1432,9 @@ Características de los Motores Paso a Paso:
 ![image](https://github.com/user-attachments/assets/3a57e345-4348-4e68-8763-d6d7cf11c61f)
 
 
+# **FINAL**
+
+![image](https://github.com/user-attachments/assets/9ae17e35-38fe-4e63-8a74-882f59c68ae6)
+
+
 
