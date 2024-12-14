@@ -1311,3 +1311,5 @@ Características Principales del L293:
 
 
 ![image](https://github.com/user-attachments/assets/1e15e632-928f-426f-9712-24da77de7c49)
+
+
