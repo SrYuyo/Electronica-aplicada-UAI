@@ -1436,5 +1436,194 @@ Características de los Motores Paso a Paso:
 
 ![image](https://github.com/user-attachments/assets/9ae17e35-38fe-4e63-8a74-882f59c68ae6)
 
+**Origen de la Idea Creativa:**
+
+Nuestra idea surgió a través del funcionamiento de una torreta que observamos en una página web. Quisimos replicarla, implementando mejoras que consideramos necesarias para optimizar su rendimiento y estabilidad. El proyecto se basa en componentes electrónicos que nos permiten controlar los movimientos de una torreta, así como disparar proyectiles de espuma de manera precisa y remota.
+
+El diseño incluye una estructura robusta que permite la inclinación y rotación de la torreta mediante dos servomotores. Estos servos reciben órdenes desde un microcontrolador Arduino Nano, lo que garantiza un control eficiente y ágil. La implementación de estos motores asegura un movimiento fluido y preciso, permitiendo apuntar a objetivos específicos con facilidad.
+
+**Disparo de Proyectiles:**
+
+El sistema de disparo de proyectiles está diseñado para ser no solo efectivo, sino también seguro. Este se lleva a cabo mediante dos motores de corriente continua (DC) que giran rodillos, los cuales son responsables de propulsar los dardos de espuma. Además, un tercer servomotor se encarga de empujar los proyectiles hacia los rodillos al recibir la señal de disparo del controlador. Esto permite que la torreta dispare con rapidez y precisión, garantizando un rendimiento óptimo en cada acción.
+
+**Alimentación y Control:**
+
+Todo el sistema funciona con una fuente extarna de 12V, que se regula mediante un convertidor de la placa arduino UNO R3 los voltajes sean estables y dentro del rango adecuado para cada componente. La comunicación con el controlador se realiza a través de un módulo Bluetooth HC-05, que facilita el control inalámbrico desde el PC para nuestro caso. Esta característica permite gestionar tanto los movimientos de la torreta como las acciones de disparo de manera remota.
+
+**Mejoras Implementadas:**
+
+Inicialmente, planeamos realizar modificaciones en la base de la torreta, ya que observamos que presentaba cierta inestabilidad. Después de varias iteraciones y errores, como la quema de motores, logramos mejorar la estabilidad general del sistema, aunque aún persistieron algunos problemas menores. Aun así, la torreta se mostró más estable que en el video que utilizamos como referencia.
+
+Adicionalmente, decidimos incluir un láser como parte del sistema. Esta mejora proporciona una herramienta de puntería visual que permite al usuario apuntar con mayor facilidad y precisión. La incorporación del control a través de Bluetooth también fue un gran avance en el proyecto, ya que esto facilitó un manejo dinámico y en tiempo real de todas las funciones de la torreta.
+
+**Conclusión:**
+
+Este proyecto no solo refleja nuestra capacidad para innovar y adaptarnos a los desafíos de la ingeniería y la programación, sino que también representa un aplicación práctica de la tecnología en un sistema interactivo. Con la combinación de electrónica, programación y diseño, hemos logrado construir una torreta controlada de manera remota que ofrece una experiencia de usuario única y entretenida. Las lecciones aprendidas a lo largo del desarrollo del proyecto han sido valiosas, fortaleciendo nuestras habilidades y conocimientos en el campo de la robótica y el control de sistemas.
 
 
+Link presentación: [https://www.canva.com/design/DAGY8OLufIo/3aoQtVRZf8LsBnGeHJ20_A/edit?utm_content=DAGY8OLufIo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton]
+
+Link proyecto guía: [https://www.littlefrenchkev.com/bluetooth-nerf-turret]
+
+**Codigo utilizado**
+
+```cpp
+#include <Servo.h>
+
+Servo recoil_servo;
+Servo pan_servo;
+Servo tilt_servo;
+
+const byte pan_limit_1 = 0;
+const byte pan_limit_2 = 180;
+const byte tilt_limit_1 = 65;
+const byte tilt_limit_2 = 180;
+const byte recoil_rest = 180;    
+const byte recoil_pushed = 125; 
+
+
+byte byte_from_app;
+const byte buffSize = 30;
+byte inputBuffer[buffSize];
+const byte startMarker = 255;
+const byte endMarker = 254;
+byte bytesRecvd = 0;
+boolean data_received = false;
+
+
+bool is_firing =  false;
+bool can_fire =  false;
+bool recoiling = false;
+
+unsigned long firing_start_time = 0;
+unsigned long firing_current_time = 0;
+const long firing_time = 150;
+
+unsigned long recoil_start_time = 0;
+unsigned long recoil_current_time = 0;
+const long recoil_time = 2 * firing_time;
+
+const byte motor_pin =  12;
+boolean motors_ON = false;
+
+
+
+void setup()
+{
+  
+  pinMode(motor_pin, OUTPUT);
+  digitalWrite(motor_pin, LOW);
+
+  
+  recoil_servo.attach(9);
+  pan_servo.attach(10);
+  tilt_servo.attach(11);
+
+
+  recoil_servo.write(recoil_rest);
+  pan_servo.write(90);
+  delay(1000);
+  tilt_servo.write(105);
+
+
+  Serial.begin(9600);
+}
+
+
+void loop()
+{
+  getDataFromPC();
+  set_motor();
+  if (data_received) {
+    move_servo();
+    set_recoil();
+    set_motor();
+  }
+  fire();
+}
+
+
+
+void getDataFromPC() {
+
+  if (Serial.available()) { 
+
+    byte_from_app = Serial.read();  
+
+    if (byte_from_app == 255) {    
+      bytesRecvd = 0;                  
+      data_received = false;
+    }
+
+    else if (byte_from_app == 254) {   
+      data_received = true;            
+    }
+
+    else {                          
+      inputBuffer[bytesRecvd] = byte_from_app;   
+      bytesRecvd++;                               
+      if (bytesRecvd == buffSize) {    
+        bytesRecvd = buffSize - 1;  
+      }
+    }
+  }
+}
+
+void move_servo() {
+  
+  byte pan_servo_position = map(inputBuffer[0], 0, 253, pan_limit_2, pan_limit_1);
+  pan_servo.write(pan_servo_position); 
+  byte tilt_servo_position = map(inputBuffer[1], 0 , 253, tilt_limit_2, tilt_limit_1);
+  tilt_servo.write(tilt_servo_position);
+}
+
+
+void set_recoil() {
+
+  if (inputBuffer[3] == 1) {        
+    if (!is_firing && !recoiling) {
+      can_fire = true;            
+    }
+  }
+  else {                  
+    can_fire = false;    
+  }
+}
+
+void set_motor() {
+
+  if (inputBuffer[2] == 1) {                
+    digitalWrite(motor_pin, HIGH);      
+    motors_ON = true;
+  }
+  else {                                   
+    digitalWrite(motor_pin, LOW);       
+    motors_ON = false;
+
+  }
+}
+
+void fire() {
+
+  if (can_fire && !is_firing && motors_ON) {
+
+    firing_start_time = millis();
+    recoil_start_time = millis();
+    is_firing = true;
+  }
+
+  firing_current_time = millis();
+  recoil_current_time = millis();
+
+  if (is_firing && firing_current_time - firing_start_time < firing_time) {
+    recoil_servo.write(recoil_pushed);
+  }
+  else if (is_firing && recoil_current_time - recoil_start_time < recoil_time) {
+    recoil_servo.write(recoil_rest);
+  }
+  else if (is_firing && recoil_current_time - recoil_start_time > recoil_time) {
+    is_firing = false;
+  }
+}
+
+```
