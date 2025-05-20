@@ -702,6 +702,7 @@ void loop() {
 
 Arduino cuenta con 13 pines configurables como entradas o salidas, siendo entradas por defecto. Es recomendable mantener las entradas en un estado conocido, utilizando resistencias de pull-up (conectadas a +5V) o pull-down (conectadas a tierra), siendo una resistencia de 10K un buen valor. Cuando un pin se configura como salida, puede proporcionar un máximo de 40 mA sin dañarse, lo cual es suficiente para encender un LED (junto con una resistencia en serie), pero no para la mayoría de los relés, solenoides o motores. En caso de un cortocircuito en uno de los pines, este puede dañarse mientras que el resto del microcontrolador seguirá funcionando, por lo que se recomienda usar una resistencia de 470 ohmios o 1K ohmios para limitar la corriente.
 
+![image](https://github.com/user-attachments/assets/d4b8e6db-5af1-4c5a-ad0d-c6c9ada7aab5)
 
 Para un pulsador tenemos qeu conectarlo a una resistencia pull-up o pull-down para darle un valor definido a la entrada del Arduino cuando no esté pulsado. 
 
